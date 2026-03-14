@@ -1,0 +1,7 @@
+{
+  "name": "Login Cafe - Interactive Experience",
+  "description": "A highly interactive, fluid, and glassmorphic website for Login Cafe featuring an AI assistant for bookings and menu inquiries.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
