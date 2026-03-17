@@ -140,7 +140,7 @@ const DriverDashboard: React.FC<DriverDashboardProps> = ({ orders, onUpdateStatu
                                                 <a 
                                                     href="https://www.google.com/maps"
                                                     target="_blank"
-                                                    rel="noreferrer"
+                                                    rel="noopener noreferrer"
                                                     className="py-3 rounded-xl bg-blue-600/20 text-blue-500 hover:bg-blue-600/30 font-bold text-sm flex items-center justify-center gap-2"
                                                 >
                                                     <Navigation className="w-4 h-4" /> Maps

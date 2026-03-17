@@ -61,6 +61,12 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ orders, menuItems, onUp
       e.preventDefault();
       if (!formData.code || !formData.name || !formData.price) return;
 
+      // Security: Prevent business logic exploitation with negative prices
+      if (formData.price < 0) {
+          alert("Price cannot be negative");
+          return;
+      }
+
       const itemToSave = formData as MenuItem;
 
       if (editingItem) {
@@ -338,6 +344,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ orders, menuItems, onUp
                                     <input 
                                         required
                                         type="number"
+                                        min="0"
                                         className="w-full bg-black/50 border border-white/10 rounded-lg p-2 text-white"
                                         value={formData.price}
                                         onChange={e => setFormData({...formData, price: parseFloat(e.target.value)})}
