@@ -166,6 +166,7 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ onOrderClick }) => {
               <input
                 type="text"
                 value={input}
+                maxLength={1000}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Ask about menu..."
