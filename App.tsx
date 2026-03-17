@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { MapPin, Phone, Facebook, MessageCircle, ArrowRight, ChevronRight, Search, Star, ShoppingBag } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -268,17 +268,22 @@ const App: React.FC = () => {
   };
 
   // --- CUSTOMER RENDER HELPERS ---
-  const filteredItems = menuItems.filter(item => {
-    // Filter out unavailable items if not admin (simulated by available flag check if needed, but keeping simple for now)
-    if (item.available === false) return false;
+  // ⚡ Bolt Optimization: Memoize filteredItems to prevent expensive recalculations
+  // on every render (e.g. when typing in search or opening modals).
+  // Reduces unnecessary list filtering.
+  const filteredItems = useMemo(() => {
+    return menuItems.filter(item => {
+      // Filter out unavailable items if not admin (simulated by available flag check if needed, but keeping simple for now)
+      if (item.available === false) return false;
 
-    const matchesCategory = item.category === activeCategory;
-    const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                          (item.description && item.description.toLowerCase().includes(searchTerm.toLowerCase()));
-    
-    if (searchTerm) return matchesSearch; 
-    return matchesCategory;
-  });
+      const matchesCategory = item.category === activeCategory;
+      const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                            (item.description && item.description.toLowerCase().includes(searchTerm.toLowerCase()));
+
+      if (searchTerm) return matchesSearch;
+      return matchesCategory;
+    });
+  }, [menuItems, activeCategory, searchTerm]);
 
   // --- RENDER ---
   return (
