@@ -70,6 +70,7 @@ export const ShinyCard: React.FC<ShinyCardProps> = ({ children, className = '', 
                 onToggleFavorite(e);
             }}
             className="absolute top-3 right-3 z-30 p-2 rounded-full hover:bg-white/20 transition-all active:scale-95"
+            aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
           >
               <Heart className={`w-5 h-5 transition-colors ${isFavorite ? 'fill-[#E4002B] text-[#E4002B]' : 'text-gray-400 hover:text-white'}`} />
           </button>
