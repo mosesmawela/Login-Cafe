@@ -115,6 +115,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin }) => 
                         required
                         type="text"
                         value={name}
+                        maxLength={100}
                         onChange={(e) => setName(e.target.value)}
                         placeholder="Your Name"
                         className="bg-transparent border-none outline-none text-white w-full placeholder-gray-600 font-medium"
@@ -134,6 +135,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin }) => 
                         required
                         type={method === 'phone' ? 'tel' : 'email'}
                         value={identifier}
+                        maxLength={255}
                         onChange={(e) => setIdentifier(e.target.value)}
                         placeholder={method === 'phone' ? '82 123 4567' : 'name@example.com'}
                         className="bg-transparent border-none outline-none text-white w-full placeholder-gray-600 font-medium"
